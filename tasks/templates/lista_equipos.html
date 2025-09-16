@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Equipos Registrados</h1>
+<a href="{% url 'crear_equipo' %}">Registrar nuevo equipo</a>
+<ul>
+    {% for equipo in equipos %}
+    <li>
+        <a href="{% url 'detalle_equipo' equipo.id %}">
+            <strong>{{ equipo.nombre }}</strong>
+        </a>
+        <p>País: {{ equipo.pais }}</p>
+        <p>Entrenador: {{ equipo.entrenador }}</p>
+        <form action="{% url 'eliminar_equipo' equipo.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Eliminar</button>
+        </form>
+    </li>
+    {% empty %}
+    <li>No hay equipos registrados.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

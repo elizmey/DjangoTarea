@@ -1,7 +1,7 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Equipo
 
-class EquipoForm(ModelForm):
+class EquipoForm(forms.ModelForm):
     class Meta:
         model = Equipo
-        fields = ['nombre', 'pais', 'fecha_creacion', 'entrenador']
+        fields = ['nombre', 'pais', 'entrenador']
